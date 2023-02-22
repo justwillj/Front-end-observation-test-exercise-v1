@@ -1,4 +1,5 @@
 import "./App.css";
+import Button from "../button/Button";
 import { useState } from "react";
 
 function App() {
@@ -31,18 +32,30 @@ function App() {
     { id: 12, number: 23 },
     { id: 13, number: 25 },
   ]);
+
+  const shuffleButton = () => {};
   return (
     <div>
       <div className="main-table">
         <div className="even-grid">
           {even.map(({ id, number }) => (
-            <h2 key={id}>{number}</h2>
+            <Button
+              key={id}
+              type="button"
+              value={number}
+              onClick={shuffleButton}
+            />
           ))}
         </div>
 
         <div className="odd-grid">
           {odd.map(({ id, number }) => (
-            <h2 key={id}>{number}</h2>
+            <Button
+              key={id}
+              type="button"
+              value={number}
+              onClick={shuffleButton}
+            />
           ))}
         </div>
       </div>
