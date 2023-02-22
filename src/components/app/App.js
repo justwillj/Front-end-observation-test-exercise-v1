@@ -1,6 +1,7 @@
 import "./App.css";
 import Button from "../button/Button";
 import { useState } from "react";
+import NumberMapper from "../button_mapper/NumberMapper.js"
 
 function App() {
   const [even, setEven] = useState([
@@ -36,6 +37,8 @@ function App() {
   const shuffleButton = () => {};
   return (
     <div>
+    <NumberMapper num={even} />
+    <NumberMapper num={odd} />
       <div className="main-table">
         <div className="even-grid">
           {even.map(({ id, number }) => (
