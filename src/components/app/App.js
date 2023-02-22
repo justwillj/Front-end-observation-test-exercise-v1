@@ -4,6 +4,8 @@ import Button from "../button/Button.js";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [style, setStyle] = useState("");
+  const [isActive, setIsActive] = useState(false);
   const [even, setEven] = useState([
     { id: 1, number: 2 },
     { id: 2, number: 4 },
@@ -36,16 +38,19 @@ function App() {
 
   const shuffleButton = () => {
     const shuffle = even.sort(() => Math.random() - 0.5);
-
     setEven((oldArray) => [...oldArray, shuffle]);
     setEven(even.filter((num) => num != ""));
     console.log(shuffle);
   };
 
-  const buttonCheck = (number) => {
+  const buttonCheck = (id, number) => {
+    if(number == count+1){
+      setStyle("correctNumber");
+      setCount(count+1)
+    }
     console.log(number);
+    console.log(id)
   };
-  console.log(shuffleButton);
   return (
     <div>
       <div className="main-table">
@@ -55,7 +60,8 @@ function App() {
               key={id}
               type="button"
               value={number}
-              onClick={() => buttonCheck(number)}
+              className={style}
+              onClick={() => buttonCheck(id, number)}
             />
           ))}
         </div>
@@ -65,7 +71,8 @@ function App() {
               key={id}
               type="button"
               value={number}
-              onClick={shuffleButton}
+              className={style}
+              onClick={()=> buttonCheck(id, number)}
             />
           ))}
         </div>
