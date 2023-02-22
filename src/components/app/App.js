@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import Button from "../button/Button.js"
+import Button from "../button/Button.js";
 
 function App() {
   const [even, setEven] = useState([
@@ -33,34 +33,36 @@ function App() {
     { id: 13, number: 25 },
   ]);
 
-  const shuffleButton = () => {};
+  const shuffleButton = () => {
+    const shuffle = even.sort(() => Math.random() - 0.5);
+    setEven((oldArray) => [...oldArray, shuffle]);
+  };
   return (
-    
     <div>
       <div className="main-table">
         <div className="even-grid">
-              {even.map(({id,number})=>
-                  <Button
-                  key={id}
-                  type="button"
-                  value={number}
-                  onClick={shuffleButton}
-                />
-                  )}
-          </div>
-          <div className="odd-grid">
-              {odd.map(({id,number})=>
-                  <Button
-                  key={id}
-                  type="button"
-                  value={number}
-                  onClick={shuffleButton}
-                />
-                  )}
-          </div>
+          {even.map(({ id, number }) => (
+            <Button
+              key={id}
+              type="button"
+              value={number}
+              onClick={shuffleButton}
+            />
+          ))}
+        </div>
+        <div className="odd-grid">
+          {odd.map(({ id, number }) => (
+            <Button
+              key={id}
+              type="button"
+              value={number}
+              onClick={shuffleButton}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 }
-// buttonOnClick={shuffleButton} 
+// buttonOnClick={shuffleButton}
 export default App;
