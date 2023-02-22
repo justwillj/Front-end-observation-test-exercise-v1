@@ -7,7 +7,7 @@ function App() {
   const [style, setStyle] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [even, setEven] = useState([
-    { id: 1, number: 2 },
+    { id: 1, number: 2, isActive },
     { id: 2, number: 4 },
     { id: 3, number: 6 },
     { id: 4, number: 8 },
@@ -36,43 +36,45 @@ function App() {
     { id: 13, number: 25 },
   ]);
 
-  const shuffleButton = () => {
-    const shuffle = even.sort(() => Math.random() - 0.5);
-    setEven((oldArray) => [...oldArray, shuffle]);
-    setEven(even.filter((num) => num != ""));
+  const shuffleButton = (list, setList) => {
+    const shuffle = list.sort(() => Math.random() - 0.5);
+    setList((oldArray) => [...oldArray, shuffle]);
+    setList(list.filter((num) => num != ""));
     console.log(shuffle);
   };
 
-  const buttonCheck = (id, number) => {
-    if(number == count+1){
-      setStyle("correctNumber");
-      setCount(count+1)
+  const buttonCheck = (id, number, list, setList, test) => {
+    if (number == count + 1) {
+      // setStyle("correctNumber");
+      setCount(count + 1);
+    } else {
+      shuffleButton(list, setList);
     }
-    console.log(number);
-    console.log(id)
+    console.log(test);
   };
+  console.log(even);
   return (
     <div>
       <div className="main-table">
         <div className="even-grid">
-          {even.map(({ id, number }) => (
+          {even.map(({ id, number, test }) => (
             <Button
               key={id}
               type="button"
               value={number}
-              className={style}
-              onClick={() => buttonCheck(id, number)}
+              className={test ? "active" : "test"}
+              onClick={() => buttonCheck(id, number, even, setEven, test)}
             />
           ))}
         </div>
         <div className="odd-grid">
-          {odd.map(({ id, number }) => (
+          {odd.map(({ id, number, test }) => (
             <Button
               key={id}
               type="button"
               value={number}
-              className={style}
-              onClick={()=> buttonCheck(id, number)}
+              className={test ? "active" : "test"}
+              onClick={() => buttonCheck(id, number, odd, setOdd, test)}
             />
           ))}
         </div>
