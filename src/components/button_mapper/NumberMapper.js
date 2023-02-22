@@ -1,8 +1,7 @@
 import React from "react"
 import Button from "../button/Button";
 
-const NumberMapper= ({num}, {className}) =>{
-    const shuffleButton = () => {};
+const NumberMapper= ({num}, {className}, {buttonOnClick}) =>{
     return (
         <div className={className}>
             {num.map(({id,number})=>
@@ -10,7 +9,7 @@ const NumberMapper= ({num}, {className}) =>{
                 key={id}
                 type="button"
                 value={number}
-                onClick={shuffleButton}
+                onClick={buttonOnClick}
               />
                 )}
         </div>

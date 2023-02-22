@@ -33,12 +33,13 @@ function App() {
     { id: 13, number: 25 },
   ]);
 
-
+  const shuffleButton = () => {};
   return (
+    
     <div>
       <div className="main-table">
-      <NumberMapper num={even} className="even-grid"  />
-      <NumberMapper num={odd} className="odd-grid" />
+      <NumberMapper num={even} className="even-grid" buttonOnClick={shuffleButton}  />
+      <NumberMapper num={odd} className="odd-grid" buttonOnClick={shuffleButton} />
       </div>
     </div>
   );
