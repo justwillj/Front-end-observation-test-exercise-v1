@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from 'react'
+import NumberMapper from "../button_mapper/NumberMapper.js"
 
 function App() {
   const [even, setEven] = useState([
@@ -33,14 +34,8 @@ function App() {
   ]);
   return (
     <div>
-      <div>{even.map(({id,number})=>
-                (<h2 key={id}>{number}
-                </h2>))}
-                </div>
-                <div>{odd.map(({id,number})=>
-                (<h2 key={id}>{number}
-                </h2>))}
-                </div>
+    <NumberMapper num={even} />
+    <NumberMapper num={odd} />
     </div>
   );
 }
