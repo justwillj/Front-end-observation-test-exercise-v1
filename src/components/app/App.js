@@ -1,5 +1,4 @@
 import "./App.css";
-import Button from "../button/Button";
 import { useState } from "react";
 import NumberMapper from "../button_mapper/NumberMapper.js"
 
@@ -34,33 +33,12 @@ function App() {
     { id: 13, number: 25 },
   ]);
 
-  const shuffleButton = () => {};
+
   return (
     <div>
-    <NumberMapper num={even} />
-    <NumberMapper num={odd} />
       <div className="main-table">
-        <div className="even-grid">
-          {even.map(({ id, number }) => (
-            <Button
-              key={id}
-              type="button"
-              value={number}
-              onClick={shuffleButton}
-            />
-          ))}
-        </div>
-
-        <div className="odd-grid">
-          {odd.map(({ id, number }) => (
-            <Button
-              key={id}
-              type="button"
-              value={number}
-              onClick={shuffleButton}
-            />
-          ))}
-        </div>
+      <NumberMapper num={even} className="even-grid"  />
+      <NumberMapper num={odd} className="odd-grid" />
       </div>
     </div>
   );

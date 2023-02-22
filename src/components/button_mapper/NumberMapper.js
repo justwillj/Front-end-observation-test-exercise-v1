@@ -1,12 +1,17 @@
 import React from "react"
+import Button from "../button/Button";
 
-const NumberMapper= ({num}) =>{
+const NumberMapper= ({num}, {className}) =>{
+    const shuffleButton = () => {};
     return (
-        <div>
+        <div className={className}>
             {num.map(({id,number})=>
-                (<h2 
-                key={id}>{number}
-                </h2>)
+                <Button
+                key={id}
+                type="button"
+                value={number}
+                onClick={shuffleButton}
+              />
                 )}
         </div>
     )
