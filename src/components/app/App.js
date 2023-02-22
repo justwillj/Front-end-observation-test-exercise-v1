@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../button/Button.js";
 
 function App() {
+  const [count, setCount] = useState(0);
   const [even, setEven] = useState([
     { id: 1, number: 2 },
     { id: 2, number: 4 },
