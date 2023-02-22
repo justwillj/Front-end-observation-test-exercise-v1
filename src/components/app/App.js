@@ -34,9 +34,13 @@ function App() {
   ]);
 
   const shuffleButton = () => {
-    const shuffle = even.sort(() => Math.random() - 0.5);
+    const shuffle = even.sort(() => (Math.random() - 0.5));
+    
     setEven((oldArray) => [...oldArray, shuffle]);
+    setEven(even.filter((num)=> num != ''));
+    console.log(shuffle);
   };
+  console.log(shuffleButton)
   return (
     <div>
       <div className="main-table">
