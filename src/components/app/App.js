@@ -35,13 +35,17 @@ function App() {
   ]);
 
   const shuffleButton = () => {
-    const shuffle = even.sort(() => (Math.random() - 0.5));
-    
+    const shuffle = even.sort(() => Math.random() - 0.5);
+
     setEven((oldArray) => [...oldArray, shuffle]);
-    setEven(even.filter((num)=> num != ''));
+    setEven(even.filter((num) => num != ""));
     console.log(shuffle);
   };
-  console.log(shuffleButton)
+
+  const buttonCheck = (number) => {
+    console.log(number);
+  };
+  console.log(shuffleButton);
   return (
     <div>
       <div className="main-table">
@@ -51,7 +55,7 @@ function App() {
               key={id}
               type="button"
               value={number}
-              onClick={shuffleButton}
+              onClick={() => buttonCheck(number)}
             />
           ))}
         </div>
