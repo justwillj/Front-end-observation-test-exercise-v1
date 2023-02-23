@@ -7,7 +7,7 @@ function App() {
   const [style, setStyle] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [even, setEven] = useState([
-    { id: 1, number: 2 },
+    { id: 1, number: 2},
     { id: 2, number: 4 },
     { id: 3, number: 6 },
     { id: 4, number: 8 },
@@ -21,7 +21,7 @@ function App() {
     { id: 12, number: 24 },
   ]);
   const [odd, setOdd] = useState([
-    { id: 1, number: 1 },
+    { id: 1, number: 1 , test: null},
     { id: 2, number: 3 },
     { id: 3, number: 5 },
     { id: 4, number: 7 },
@@ -43,9 +43,12 @@ function App() {
     console.log(shuffle);
   };
 
-  const buttonCheck = (id, number) => {
+  const buttonCheck = (id, number, test) => {
+    // const testIndex = odd.find(odd.indexOf(id));
     if(number == count+1){
-      setStyle("correctNumber");
+      odd.value(test)=true;
+      // odd.value(odd.indexOf(id).valueOf(test));
+      // setStyle("correctNumber");
       setCount(count+1)
     }
     console.log(number);
@@ -55,13 +58,13 @@ function App() {
     <div>
       <div className="main-table">
         <div className="even-grid">
-          {even.map(({ id, number }) => (
+          {even.map(({ id, number, test }) => (
             <Button
               key={id}
               type="button"
               value={number}
-              className={style}
-              onClick={() => buttonCheck(id, number)}
+              className={test} 
+              onClick={() => buttonCheck(id, number, test)}
             />
           ))}
         </div>
