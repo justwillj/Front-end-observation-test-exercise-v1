@@ -1,11 +1,15 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Button from "../button/Button.js";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [style, setStyle] = useState("");
   const [isActive, setIsActive] = useState(false);
+
+  //Win messages
+  const [winMessage, setWinMessage] = useState(false);
 
   //Even clicks
   const [evenClicks, setEvenClicks] = useState(0);
@@ -13,8 +17,25 @@ function App() {
   //Odd clicks
   const [oddClicks, setOddClicks] = useState(0);
 
+  //Total Clicks
+  const [totalClicks, setTotalClicks] = useState(0);
+
+  //% Score
+  const [clickScore, setClickScore] = useState(25 / totalClicks);
+
+  //Finished time
+  const [finishedTime, setFinishedTime] = useState(0);
+  //Timer
+  const [gameTime, setGameTime] = useState(0);
+  useEffect(() => {
+    gameTime == 0 &&
+      setInterval(() => {
+        setGameTime((time) => time + 0.5);
+      }, 1000);
+  }, []);
+
   const [even, setEven] = useState([
-    { id: 1, number: 2, isActive },
+    { id: 1, number: 2, isActive: true },
     { id: 2, number: 4 },
     { id: 3, number: 6 },
     { id: 4, number: 8 },
@@ -47,7 +68,6 @@ function App() {
     const shuffle = list.sort(() => Math.random() - 0.5);
     setList((oldArray) => [...oldArray, shuffle]);
     setList(list.filter((num) => num != ""));
-    console.log(shuffle);
   };
 
   //Shuffles the buttons on page load
@@ -57,7 +77,7 @@ function App() {
   }, []);
 
   const buttonCheck = (id, number, list, setList, click, setClicks) => {
-    if (number == count + 1) {
+    if (number == count) {
       // setStyle("correctNumber");
       setCount(count + 1);
       setClicks(click + 1);
@@ -65,8 +85,13 @@ function App() {
       setClicks(click + 1);
       shuffleButton(list, setList);
     }
+    if (count === 25) {
+      setFinishedTime(gameTime);
+      setWinMessage(true);
+      setTotalClicks(oddClicks + evenClicks + 1);
+    }
   };
-  console.log(even);
+
   return (
     <div>
       <div className="main-table">
@@ -105,6 +130,12 @@ function App() {
             />
           ))}
         </div>
+        <h1>{winMessage ? <h1>Time:{finishedTime}s</h1> : null}</h1>
+        <h1>
+          {winMessage ? (
+            <h1>Clicks:{((25 / totalClicks) * 100).toFixed(2)}%</h1>
+          ) : null}
+        </h1>
       </div>
     </div>
   );
