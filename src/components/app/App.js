@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../button/Button.js";
 
 function App() {
@@ -43,6 +43,12 @@ function App() {
     console.log(shuffle);
   };
 
+  //Shuffles the buttons on page load
+  useEffect(() => {
+    shuffleButton(even, setEven);
+    shuffleButton(odd, setOdd);
+  }, []);
+
   const buttonCheck = (id, number, list, setList, test) => {
     if (number == count + 1) {
       // setStyle("correctNumber");
@@ -50,7 +56,6 @@ function App() {
     } else {
       shuffleButton(list, setList);
     }
-    console.log(test);
   };
   console.log(even);
   return (
