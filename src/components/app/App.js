@@ -4,7 +4,7 @@ import Button from "../button/Button.js";
 import { clear } from "@testing-library/user-event/dist/clear";
 
 function App() {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [style, setStyle] = useState("");
   const [isActive, setIsActive] = useState(false);
 
@@ -20,9 +20,6 @@ function App() {
   //Total Clicks
   const [totalClicks, setTotalClicks] = useState(0);
 
-  //% Score
-  const [clickScore, setClickScore] = useState(25 / totalClicks);
-
   //Finished time
   const [finishedTime, setFinishedTime] = useState(0);
   //Timer
@@ -35,7 +32,7 @@ function App() {
   }, []);
 
   const [even, setEven] = useState([
-    { id: 1, number: 2, isActive: true },
+    { id: 1, number: 2 },
     { id: 2, number: 4 },
     { id: 3, number: 6 },
     { id: 4, number: 8 },
@@ -49,7 +46,7 @@ function App() {
     { id: 12, number: 24 },
   ]);
   const [odd, setOdd] = useState([
-    { id: 1, number: 1, isActive },
+    { id: 1, number: 1 },
     { id: 2, number: 3 },
     { id: 3, number: 5 },
     { id: 4, number: 7 },
@@ -77,8 +74,9 @@ function App() {
   }, []);
 
   const buttonCheck = (id, number, list, setList, click, setClicks) => {
-    if (number == count) {
-      // setStyle("correctNumber");
+    if (number == count + 1) {
+      console.log(odd);
+
       setCount(count + 1);
       setClicks(click + 1);
     } else {
@@ -92,8 +90,21 @@ function App() {
     }
   };
 
+  //Starts new game
+  const newGame = () => {
+    shuffleButton(even, setEven);
+    shuffleButton(odd, setOdd);
+    setWinMessage(false);
+    setFinishedTime(0);
+    setEvenClicks(0);
+    setOddClicks(0);
+    setCount(1);
+    setGameTime(0);
+  };
+
   return (
     <div>
+      <button onClick={newGame}>New game</button>
       <div className="main-table">
         <div className="even-grid">
           <h1>Even clicks:{evenClicks}</h1>
@@ -102,7 +113,7 @@ function App() {
               key={id}
               type="button"
               value={number}
-              className={isActive ? "active" : "test"}
+              className={number <= count ? "active" : "test"}
               onClick={() =>
                 buttonCheck(
                   id,
@@ -123,13 +134,14 @@ function App() {
               key={id}
               type="button"
               value={number}
-              className={isActive ? "active" : "test"}
+              className={number <= count ? "active" : "test"}
               onClick={() =>
                 buttonCheck(id, number, odd, setOdd, oddClicks, setOddClicks)
               }
             />
           ))}
         </div>
+        <h1>{winMessage ? <h1>YOU WIN!</h1> : null}</h1>
         <h1>{winMessage ? <h1>Time:{finishedTime}s</h1> : null}</h1>
         <h1>
           {winMessage ? (
