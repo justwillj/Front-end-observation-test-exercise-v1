@@ -6,8 +6,34 @@ import { clear } from "@testing-library/user-event/dist/clear";
 function App() {
   const [count, setCount] = useState(0);
   const [style, setStyle] = useState("");
+  const evenArray = new Set;
+  const evenArray2 = [];
+  const oddArray = new Set;
+  const oddArray2 = [];
+  const evenArraySet= new Set();
   const [isActive, setIsActive] = useState(false);
-
+  /**generates an array of even numbers consecutivly 1-25 */
+  const makeAnEvenArray=()=>{ for (let i = 0; i < 25; i++) {
+        if (evenArray.size < 13 && i%2==0 && i != 0) {
+          evenArray.add(i)
+        }
+        
+  }
+  let j=0;
+  evenArray.forEach((e)=> {if(evenArray2.length<12){evenArray2.push({'id':j++, 'number':e})}});
+  return evenArray2;
+  }
+  /**generates an array of odd numbers consecutivly 1-25 */
+  const makeAnOddArray=()=>{ for (let i = 1; i < 26; i++) {
+    if (oddArray.size < 13 && i%2!=0 && i != 0) {
+      oddArray.add(i)
+    }
+    
+  }
+  let j=0;
+  oddArray.forEach((o)=> {if(oddArray2.length<13){oddArray2.push({'id':j++, 'number':o})}});
+  return oddArray2;
+  }
   //Win messages
   const [winMessage, setWinMessage] = useState(false);
 
@@ -25,41 +51,51 @@ function App() {
   //Timer
   const [gameTime, setGameTime] = useState(0);
   useEffect(() => {
+    makeAnEvenArray();
+    makeAnOddArray();
     gameTime == 0 &&
       setInterval(() => {
         setGameTime((time) => time + 0.5);
       }, 1000);
   }, []);
 
-  const [even, setEven] = useState([
-    { id: 1, number: 2 },
-    { id: 2, number: 4 },
-    { id: 3, number: 6 },
-    { id: 4, number: 8 },
-    { id: 5, number: 10 },
-    { id: 6, number: 12 },
-    { id: 7, number: 14 },
-    { id: 8, number: 16 },
-    { id: 9, number: 18 },
-    { id: 10, number: 20 },
-    { id: 11, number: 22 },
-    { id: 12, number: 24 },
-  ]);
-  const [odd, setOdd] = useState([
-    { id: 1, number: 1 },
-    { id: 2, number: 3 },
-    { id: 3, number: 5 },
-    { id: 4, number: 7 },
-    { id: 5, number: 9 },
-    { id: 6, number: 11 },
-    { id: 7, number: 13 },
-    { id: 8, number: 15 },
-    { id: 9, number: 17 },
-    { id: 10, number: 19 },
-    { id: 11, number: 21 },
-    { id: 12, number: 23 },
-    { id: 13, number: 25 },
-  ]);
+  const [even, setEven] = useState(
+    // Array.from(evenArray)
+    evenArray2
+  //   [
+    
+  //   { id: 1, number: 2 },
+  //   { id: 2, number: 4 },
+  //   { id: 3, number: 6 },
+  //   { id: 4, number: 8 },
+  //   { id: 5, number: 10 },
+  //   { id: 6, number: 12 },
+  //   { id: 7, number: 14 },
+  //   { id: 8, number: 16 },
+  //   { id: 9, number: 18 },
+  //   { id: 10, number: 20 },
+  //   { id: 11, number: 22 },
+  //   { id: 12, number: 24 },
+  // ]
+  );
+  const [odd, setOdd] = useState(
+    oddArray2
+  //   [
+  //   { id: 1, number: 1 },
+  //   { id: 2, number: 3 },
+  //   { id: 3, number: 5 },
+  //   { id: 4, number: 7 },
+  //   { id: 5, number: 9 },
+  //   { id: 6, number: 11 },
+  //   { id: 7, number: 13 },
+  //   { id: 8, number: 15 },
+  //   { id: 9, number: 17 },
+  //   { id: 10, number: 19 },
+  //   { id: 11, number: 21 },
+  //   { id: 12, number: 23 },
+  //   { id: 13, number: 25 },
+  // ]
+  );
 
   const shuffleButton = (list, setList) => {
     const shuffle = list.sort(() => Math.random() - 0.5);
@@ -69,6 +105,9 @@ function App() {
 
   //Shuffles the buttons on page load
   useEffect(() => {
+    makeAnEvenArray();
+    makeAnOddArray();
+    console.log(evenArray2);
     shuffleButton(even, setEven);
     shuffleButton(odd, setOdd);
   }, []);
@@ -105,7 +144,6 @@ function App() {
 
   return (
     <div>
-      <h1>{count}</h1>
       <button onClick={newGame}>New game</button>
       <div className="main-table">
         <div className="even-grid">
