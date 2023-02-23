@@ -21,9 +21,9 @@ h1 {
   padding: 120px;
 }
 
-.active {
+/* li.active:target {
   background-color: green;
 }
-.test {
+li.test {
   background-color: red;
-}
+} */

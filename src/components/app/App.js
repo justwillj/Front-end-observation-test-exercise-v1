@@ -1,6 +1,10 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import Button from "../button/Button.js";
+// import Button from "../button/Button.js";
+import List from "../list/List";
+import ListItem from "../listItem/ListItem.js"
+import Button from "../button/Button";
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -61,19 +65,46 @@ function App() {
       // setStyle("correctNumber");
       setCount(count + 1);
       setClicks(click + 1);
+      setIsActive(true)
     } else {
       setClicks(click + 1);
       shuffleButton(list, setList);
     }
   };
+  console.log(isActive)
+      console.log(odd)
   console.log(even);
   return (
     <div>
       <div className="main-table">
         <div className="even-grid">
           <h1>Even clicks:{evenClicks}</h1>
-          {even.map(({ id, number, isActive }) => (
-            <Button
+          <List>
+          {even.map(({ id, number}) => (
+            <ListItem
+              key={id}
+              type="button"
+              value={number}
+              className={isActive ? "active" : "test"}
+              onClick={() =>
+                buttonCheck(
+                  id,
+                  number,
+                  even,
+                  setEven,
+                  evenClicks,
+                  setEvenClicks
+                )
+              }
+            ><Button></Button></ListItem>
+          ))}
+          </List>
+        </div>
+        <div className="odd-grid">
+          <h1>Odd clicks:{oddClicks}</h1>
+          <List>
+          {odd.map(({ id, number}) => (
+            <ListItem
               key={id}
               type="button"
               value={number}
@@ -90,20 +121,7 @@ function App() {
               }
             />
           ))}
-        </div>
-        <div className="odd-grid">
-          <h1>Odd clicks:{oddClicks}</h1>
-          {odd.map(({ id, number, isActive }) => (
-            <Button
-              key={id}
-              type="button"
-              value={number}
-              className={isActive ? "active" : "test"}
-              onClick={() =>
-                buttonCheck(id, number, odd, setOdd, oddClicks, setOddClicks)
-              }
-            />
-          ))}
+          </List>
         </div>
       </div>
     </div>
