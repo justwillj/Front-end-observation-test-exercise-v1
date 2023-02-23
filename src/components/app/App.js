@@ -74,6 +74,11 @@ function App() {
   }, []);
 
   const buttonCheck = (id, number, list, setList, click, setClicks) => {
+    if (count == 24) {
+      setFinishedTime(gameTime);
+      setWinMessage(true);
+      setTotalClicks(oddClicks + evenClicks + 1);
+    }
     if (number == count + 1) {
       console.log(odd);
 
@@ -83,11 +88,7 @@ function App() {
       setClicks(click + 1);
       shuffleButton(list, setList);
     }
-    if (count === 25) {
-      setFinishedTime(gameTime);
-      setWinMessage(true);
-      setTotalClicks(oddClicks + evenClicks + 1);
-    }
+  
   };
 
   //Starts new game
@@ -98,12 +99,13 @@ function App() {
     setFinishedTime(0);
     setEvenClicks(0);
     setOddClicks(0);
-    setCount(1);
+    setCount(0);
     setGameTime(0);
   };
 
   return (
     <div>
+      <h1>{count}</h1>
       <button onClick={newGame}>New game</button>
       <div className="main-table">
         <div className="even-grid">
