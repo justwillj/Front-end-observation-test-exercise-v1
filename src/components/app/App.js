@@ -4,7 +4,7 @@ import Button from "../button/Button.js";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [style, setStyle] = useState("");
+  const [style, setStyle] = useState("test");
   const [isActive, setIsActive] = useState(false);
 
   //Even clicks
@@ -59,6 +59,7 @@ function App() {
   const buttonCheck = (id, number, list, setList, click, setClicks) => {
     if (number == count + 1) {
       // setStyle("correctNumber");
+      setStyle("active");
       setCount(count + 1);
       setClicks(click + 1);
     } else {
@@ -72,12 +73,12 @@ function App() {
       <div className="main-table">
         <div className="even-grid">
           <h1>Even clicks:{evenClicks}</h1>
-          {even.map(({ id, number, isActive }) => (
-            <Button
+          {even.map(({ id, number}) => (
+            <Button style={{backgroundColor: "lightblue"}}
               key={id}
               type="button"
               value={number}
-              className={isActive ? "active" : "test"}
+
               onClick={() =>
                 buttonCheck(
                   id,
@@ -93,12 +94,12 @@ function App() {
         </div>
         <div className="odd-grid">
           <h1>Odd clicks:{oddClicks}</h1>
-          {odd.map(({ id, number, isActive }) => (
+          {odd.map(({ id, number}) => (
             <Button
               key={id}
               type="button"
               value={number}
-              className={isActive ? "active" : "test"}
+
               onClick={() =>
                 buttonCheck(id, number, odd, setOdd, oddClicks, setOddClicks)
               }

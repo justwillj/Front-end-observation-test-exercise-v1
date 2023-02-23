@@ -21,7 +21,7 @@ h1 {
   padding: 120px;
 }
 
-.active {
+button::selection {
   background-color: green;
 }
 .test {
