@@ -6,6 +6,13 @@ function App() {
   const [count, setCount] = useState(0);
   const [style, setStyle] = useState("");
   const [isActive, setIsActive] = useState(false);
+
+  //Even clicks
+  const [evenClicks, setEvenClicks] = useState(0);
+
+  //Odd clicks
+  const [oddClicks, setOddClicks] = useState(0);
+
   const [even, setEven] = useState([
     { id: 1, number: 2, isActive },
     { id: 2, number: 4 },
@@ -21,7 +28,7 @@ function App() {
     { id: 12, number: 24 },
   ]);
   const [odd, setOdd] = useState([
-    { id: 1, number: 1 },
+    { id: 1, number: 1, isActive },
     { id: 2, number: 3 },
     { id: 3, number: 5 },
     { id: 4, number: 7 },
@@ -49,11 +56,13 @@ function App() {
     shuffleButton(odd, setOdd);
   }, []);
 
-  const buttonCheck = (id, number, list, setList, test) => {
+  const buttonCheck = (id, number, list, setList, click, setClicks) => {
     if (number == count + 1) {
       // setStyle("correctNumber");
       setCount(count + 1);
+      setClicks(click + 1);
     } else {
+      setClicks(click + 1);
       shuffleButton(list, setList);
     }
   };
@@ -62,24 +71,37 @@ function App() {
     <div>
       <div className="main-table">
         <div className="even-grid">
-          {even.map(({ id, number, test }) => (
+          <h1>Even clicks:{evenClicks}</h1>
+          {even.map(({ id, number, isActive }) => (
             <Button
               key={id}
               type="button"
               value={number}
-              className={test ? "active" : "test"}
-              onClick={() => buttonCheck(id, number, even, setEven, test)}
+              className={isActive ? "active" : "test"}
+              onClick={() =>
+                buttonCheck(
+                  id,
+                  number,
+                  even,
+                  setEven,
+                  evenClicks,
+                  setEvenClicks
+                )
+              }
             />
           ))}
         </div>
         <div className="odd-grid">
-          {odd.map(({ id, number, test }) => (
+          <h1>Odd clicks:{oddClicks}</h1>
+          {odd.map(({ id, number, isActive }) => (
             <Button
               key={id}
               type="button"
               value={number}
-              className={test ? "active" : "test"}
-              onClick={() => buttonCheck(id, number, odd, setOdd, test)}
+              className={isActive ? "active" : "test"}
+              onClick={() =>
+                buttonCheck(id, number, odd, setOdd, oddClicks, setOddClicks)
+              }
             />
           ))}
         </div>
