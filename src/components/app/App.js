@@ -72,7 +72,7 @@ function App() {
   const [odd, setOdd] = useState(oddArray2);
 
   /**
-   * Create all the numbers on page load
+   * Create all the numbers on page load and gives us our users time when they finish
    */
   useEffect(() => {
     makeAnEvenArray();
