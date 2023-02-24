@@ -1,22 +1,21 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&family=Quicksand:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&family=Quicksand:wght@500&display=swap");
 
 body {
   background-color: aquamarine;
 }
 h1 {
-  font-family: 'Inter', sans-serif;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Inter", sans-serif;
+  font-family: "Quicksand", sans-serif;
   text-align: center;
 }
 .new-game {
   color: whitesmoke;
-  font-family: 'Inter', sans-serif;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Inter", sans-serif;
+  font-family: "Quicksand", sans-serif;
   text-align: center;
   margin-left: 25%;
   margin-right: 25%;
-  width:50%
+  width: 50%;
 }
 .even-grid {
   color: whitesmoke;
@@ -26,8 +25,8 @@ h1 {
   margin: auto;
   border-radius: 10px;
   height: 400px;
-  width:100%;
-  background-color: #EA4C89;
+  width: 100%;
+  background-color: #ea4c89;
 }
 
 .odd-grid {
@@ -38,8 +37,8 @@ h1 {
   margin: auto;
   border-radius: 10px;
   height: 400px;
-  width:100%;
-  background-color: #EA4C89;
+  width: 100%;
+  background-color: #ea4c89;
 }
 .main-table {
   display: flex;
@@ -48,13 +47,13 @@ h1 {
   column-gap: 100px;
   padding: 120px;
   padding-left: 10%;
-  width:100%
+  width: 100%;
 }
 
 button {
-  font-family: 'Inter', sans-serif;
-  font-family: 'Quicksand', sans-serif;
-  background-color: #EA4C89;
+  font-family: "Inter", sans-serif;
+  font-family: "Quicksand", sans-serif;
+  background-color: #ea4c89;
   width: 25%;
   border-radius: 8px;
   border-style: none;
@@ -62,7 +61,6 @@ button {
   color: whitesmoke;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
   font-weight: 500;
   height: 50px;
   line-height: 20px;
@@ -80,10 +78,9 @@ button {
   touch-action: manipulation;
 }
 
-button:hover{
-  background-color: #F082AC;
+button:hover {
+  background-color: #f082ac;
 }
-
 
 .active {
   background-color: rgba(0, 207, 48, 0.644);

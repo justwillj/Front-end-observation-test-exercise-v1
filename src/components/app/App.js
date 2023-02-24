@@ -2,40 +2,49 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Button from "../button/Button.js";
 import { clear } from "@testing-library/user-event/dist/clear";
+import Modal from "../modal/Modal";
 
 function App() {
   const [count, setCount] = useState(0);
   const [style, setStyle] = useState("");
-  const evenArray = new Set;
+  const evenArray = new Set();
   const evenArray2 = [];
-  const oddArray = new Set;
+  const oddArray = new Set();
   const oddArray2 = [];
-  const evenArraySet= new Set();
+  const evenArraySet = new Set();
   const [isActive, setIsActive] = useState(false);
   /**generates an array of even numbers consecutivly 1-25 */
-  const makeAnEvenArray=()=>{ for (let i = 0; i < 25; i++) {
-        if (evenArray.size < 13 && i%2==0 && i != 0) {
-          evenArray.add(i)
-        }
-        
-  }
-  let j=0;
-  evenArray.forEach((e)=> {if(evenArray2.length<12){evenArray2.push({'id':j++, 'number':e})}});
-  return evenArray2;
-  }
-  /**generates an array of odd numbers consecutivly 1-25 */
-  const makeAnOddArray=()=>{ for (let i = 1; i < 26; i++) {
-    if (oddArray.size < 13 && i%2!=0 && i != 0) {
-      oddArray.add(i)
+  const makeAnEvenArray = () => {
+    for (let i = 0; i < 25; i++) {
+      if (evenArray.size < 13 && i % 2 == 0 && i != 0) {
+        evenArray.add(i);
+      }
     }
-    
-  }
-  let j=0;
-  oddArray.forEach((o)=> {if(oddArray2.length<13){oddArray2.push({'id':j++, 'number':o})}});
-  return oddArray2;
-  }
+    let j = 0;
+    evenArray.forEach((e) => {
+      if (evenArray2.length < 12) {
+        evenArray2.push({ id: j++, number: e });
+      }
+    });
+    return evenArray2;
+  };
+  /**generates an array of odd numbers consecutivly 1-25 */
+  const makeAnOddArray = () => {
+    for (let i = 1; i < 26; i++) {
+      if (oddArray.size < 13 && i % 2 != 0 && i != 0) {
+        oddArray.add(i);
+      }
+    }
+    let j = 0;
+    oddArray.forEach((o) => {
+      if (oddArray2.length < 13) {
+        oddArray2.push({ id: j++, number: o });
+      }
+    });
+    return oddArray2;
+  };
   //Win messages
-  const [winMessage, setWinMessage] = useState(false);
+  const [winMessage, setWinMessage] = useState(true);
 
   //Even clicks
   const [evenClicks, setEvenClicks] = useState(0);
@@ -62,39 +71,39 @@ function App() {
   const [even, setEven] = useState(
     // Array.from(evenArray)
     evenArray2
-  //   [
-    
-  //   { id: 1, number: 2 },
-  //   { id: 2, number: 4 },
-  //   { id: 3, number: 6 },
-  //   { id: 4, number: 8 },
-  //   { id: 5, number: 10 },
-  //   { id: 6, number: 12 },
-  //   { id: 7, number: 14 },
-  //   { id: 8, number: 16 },
-  //   { id: 9, number: 18 },
-  //   { id: 10, number: 20 },
-  //   { id: 11, number: 22 },
-  //   { id: 12, number: 24 },
-  // ]
+    //   [
+
+    //   { id: 1, number: 2 },
+    //   { id: 2, number: 4 },
+    //   { id: 3, number: 6 },
+    //   { id: 4, number: 8 },
+    //   { id: 5, number: 10 },
+    //   { id: 6, number: 12 },
+    //   { id: 7, number: 14 },
+    //   { id: 8, number: 16 },
+    //   { id: 9, number: 18 },
+    //   { id: 10, number: 20 },
+    //   { id: 11, number: 22 },
+    //   { id: 12, number: 24 },
+    // ]
   );
   const [odd, setOdd] = useState(
     oddArray2
-  //   [
-  //   { id: 1, number: 1 },
-  //   { id: 2, number: 3 },
-  //   { id: 3, number: 5 },
-  //   { id: 4, number: 7 },
-  //   { id: 5, number: 9 },
-  //   { id: 6, number: 11 },
-  //   { id: 7, number: 13 },
-  //   { id: 8, number: 15 },
-  //   { id: 9, number: 17 },
-  //   { id: 10, number: 19 },
-  //   { id: 11, number: 21 },
-  //   { id: 12, number: 23 },
-  //   { id: 13, number: 25 },
-  // ]
+    //   [
+    //   { id: 1, number: 1 },
+    //   { id: 2, number: 3 },
+    //   { id: 3, number: 5 },
+    //   { id: 4, number: 7 },
+    //   { id: 5, number: 9 },
+    //   { id: 6, number: 11 },
+    //   { id: 7, number: 13 },
+    //   { id: 8, number: 15 },
+    //   { id: 9, number: 17 },
+    //   { id: 10, number: 19 },
+    //   { id: 11, number: 21 },
+    //   { id: 12, number: 23 },
+    //   { id: 13, number: 25 },
+    // ]
   );
 
   const shuffleButton = (list, setList) => {
@@ -127,7 +136,6 @@ function App() {
       setClicks(click + 1);
       shuffleButton(list, setList);
     }
-  
   };
 
   //Starts new game
@@ -144,7 +152,12 @@ function App() {
 
   return (
     <div>
-      <button className="new-game" onClick={newGame}>New game</button>
+      {winMessage ? (
+        <Modal finishedTime={finishedTime} totalClicks={totalClicks} />
+      ) : null}
+      <button className="new-game" onClick={newGame}>
+        New game
+      </button>
       <div className="main-table">
         <div className="even-grid">
           <h1>Even clicks: {evenClicks}</h1>
@@ -181,13 +194,6 @@ function App() {
             />
           ))}
         </div>
-        <h1>{winMessage ? <h1>YOU WIN!</h1> : null}</h1>
-        <h1>{winMessage ? <h1>Time:{finishedTime}s</h1> : null}</h1>
-        <h1>
-          {winMessage ? (
-            <h1>Clicks:{((25 / totalClicks) * 100).toFixed(2)}%</h1>
-          ) : null}
-        </h1>
       </div>
     </div>
   );
