@@ -40,11 +40,11 @@ h1 {
   padding-top: 1%;;
   padding-left: 5%;
   padding-right:5%;
-  padding-bottom: 1%;
+  padding-bottom: 7%;
   margin: auto;
   margin-top: 1%;
   border-radius: 10px;
-  height: auto;
+  height: 100%;
   width: 50%;
   background-color: #ea4c89;
 }
@@ -59,11 +59,11 @@ h1 {
   padding-top: 1rem;;
   padding-left: 5%;
   padding-right:5%;
-  padding-bottom: 1rem;
+  padding-bottom: .5%;
   margin: auto;
   margin-top: 1%;
   border-radius: 10px;
-  height: auto;
+  height: 100%;
   width: 50%;
   background-color: #ea4c89;
 }
@@ -107,7 +107,7 @@ button:hover {
 }
 
 .active {
-  font-size: 100%;
+  font-size: 250%;
   background-color: rgba(0, 207, 48, 0.644);
 }
 .test {
