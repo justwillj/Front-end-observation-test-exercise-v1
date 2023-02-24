@@ -1,29 +1,89 @@
-h1 {
-  color: red;
-}
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&family=Quicksand:wght@500&display=swap');
+
+body {
+  background-color: aquamarine;
+}
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+}
+.new-game {
+  color: whitesmoke;
+  font-family: 'Inter', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  width:50%
+}
 .even-grid {
+  color: whitesmoke;
+  padding: 2%;
+  margin: auto;
   border-radius: 10px;
-  height: 100%;
-  width: 700px;
-  background-color: rgb(151, 151, 151);
+  height: 300px;
+  width:100%;
+  background-color: #EA4C89;
 }
 
 .odd-grid {
+  color: whitesmoke;
+  padding: 2%;
+  margin: auto;
   border-radius: 10px;
-  height: 100%;
-  width: 700px;
-  background-color: rgb(151, 151, 151);
+  height: 300px;
+  width:100%;
+  background-color: #EA4C89;
 }
 .main-table {
   display: flex;
+  align-items: center;
+  align-content: center;
   column-gap: 100px;
   padding: 120px;
+  padding-left: 10%;
+  width:100%
 }
 
+button {
+  font-family: 'Inter', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #EA4C89;
+  width: 20%;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: whitesmoke;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 2%;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover{
+  background-color: #F082AC;
+}
+
+
 .active {
-  background-color: green;
+  background-color: rgba(0, 207, 48, 0.644);
 }
 .test {
-  background-color: red;
+  background-color: rgb(43, 74, 210);
 }

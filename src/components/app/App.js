@@ -144,10 +144,10 @@ function App() {
 
   return (
     <div>
-      <button onClick={newGame}>New game</button>
+      <button className="new-game" onClick={newGame}>New game</button>
       <div className="main-table">
         <div className="even-grid">
-          <h1>Even clicks:{evenClicks}</h1>
+          <h1>Even clicks: {evenClicks}</h1>
           {even.map(({ id, number, isActive }) => (
             <Button
               key={id}
@@ -168,7 +168,7 @@ function App() {
           ))}
         </div>
         <div className="odd-grid">
-          <h1>Odd clicks:{oddClicks}</h1>
+          <h1>Odd clicks: {oddClicks}</h1>
           {odd.map(({ id, number, isActive }) => (
             <Button
               key={id}
