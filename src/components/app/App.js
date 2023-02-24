@@ -4,12 +4,14 @@ import Button from "../button/Button.js";
 import Modal from "../modal/Modal";
 
 function App() {
-  const [count, setCount] = useState(0);
   const evenArray = new Set();
   const evenArray2 = [];
   const oddArray = new Set();
   const oddArray2 = [];
-  /**generates an array of even numbers consecutivly 1-25 */
+
+  /**
+   * generates an array of even numbers consecutively 1-25
+   */
   const makeAnEvenArray = () => {
     for (let i = 0; i < 25; i++) {
       if (evenArray.size < 13 && i % 2 == 0 && i != 0) {
@@ -24,7 +26,10 @@ function App() {
     });
     return evenArray2;
   };
-  /**generates an array of odd numbers consecutivly 1-25 */
+
+  /**
+   * generates an array of odd numbers consecutively 1-25
+   */
   const makeAnOddArray = () => {
     for (let i = 1; i < 26; i++) {
       if (oddArray.size < 13 && i % 2 != 0 && i != 0) {
@@ -39,6 +44,10 @@ function App() {
     });
     return oddArray2;
   };
+
+  //Used to check the button values to make sure the order is correct
+  const [count, setCount] = useState(0);
+
   //Win messages
   const [winMessage, setWinMessage] = useState(false);
 
@@ -55,6 +64,16 @@ function App() {
   const [finishedTime, setFinishedTime] = useState(0);
   //Timer
   const [gameTime, setGameTime] = useState(0);
+
+  //All the even numbers
+  const [even, setEven] = useState(evenArray2);
+
+  //All the odd numbers
+  const [odd, setOdd] = useState(oddArray2);
+
+  /**
+   * Create all the numbers on page load
+   */
   useEffect(() => {
     makeAnEvenArray();
     makeAnOddArray();
@@ -64,16 +83,20 @@ function App() {
       }, 1000);
   }, []);
 
-  const [even, setEven] = useState(evenArray2);
-  const [odd, setOdd] = useState(oddArray2);
-
+  /**
+   * Will shuffle the given array when called
+   * @param {Array} list -The list that we want to shuffle
+   * @param {Mutation} setList - The mutation we use to set the shuffle array
+   */
   const shuffleButton = (list, setList) => {
     const shuffle = list.sort(() => Math.random() - 0.5);
     setList((oldArray) => [...oldArray, shuffle]);
     setList(list.filter((num) => num != ""));
   };
 
-  //Shuffles the buttons on page load
+  /**
+   * Shuffles the buttons on page load
+   */
   useEffect(() => {
     makeAnEvenArray();
     makeAnOddArray();
@@ -81,6 +104,14 @@ function App() {
     shuffleButton(odd, setOdd);
   }, []);
 
+  /**
+   * Checks each of the buttons when clicked to make sure the order is correct
+   * @param {number} number - the number value of the button that is clicked
+   * @param {Array} list - the list that the button is coming from
+   * @param {Mutation} setList - the mutation used to set the list again
+   * @param {number} click - the variable that stores the number of whichever array the button is in
+   * @param {Mutation} setClicks - Adds a click to the variable that holds the clicks
+   */
   const buttonCheck = (number, list, setList, click, setClicks) => {
     if (count == 24) {
       setFinishedTime(gameTime);
@@ -88,8 +119,6 @@ function App() {
       setTotalClicks(oddClicks + evenClicks + 1);
     }
     if (number == count + 1) {
-      console.log(odd);
-
       setCount(count + 1);
       setClicks(click + 1);
     } else {
@@ -99,6 +128,9 @@ function App() {
   };
 
   //Starts new game
+  /**
+   * Starts a new game for the user
+   */
   const newGame = () => {
     shuffleButton(even, setEven);
     shuffleButton(odd, setOdd);
