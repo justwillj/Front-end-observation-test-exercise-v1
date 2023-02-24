@@ -44,7 +44,7 @@ function App() {
     return oddArray2;
   };
   //Win messages
-  const [winMessage, setWinMessage] = useState(true);
+  const [winMessage, setWinMessage] = useState(false);
 
   //Even clicks
   const [evenClicks, setEvenClicks] = useState(0);
