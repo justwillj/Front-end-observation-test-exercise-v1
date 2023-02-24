@@ -91,6 +91,8 @@ button {
   font-weight: 500;
   outline: none;
   padding: 8%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   margin: 1.5%;
   position: relative;
   text-align: center;
