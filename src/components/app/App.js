@@ -113,7 +113,7 @@ function App() {
    * @param {Mutation} setClicks - Adds a click to the variable that holds the clicks
    */
   const buttonCheck = (number, list, setList, click, setClicks) => {
-    if (count == 24) {
+    if (count == 24 && number == 25) {
       setFinishedTime(gameTime);
       setWinMessage(true);
       setTotalClicks(oddClicks + evenClicks + 1);
