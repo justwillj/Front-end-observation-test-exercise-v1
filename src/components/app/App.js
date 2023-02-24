@@ -127,7 +127,6 @@ function App() {
     }
   };
 
-  //Starts new game
   /**
    * Starts a new game for the user
    */
